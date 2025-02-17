@@ -30,3 +30,4 @@ logs
 # Cache directories
 .npm
 .eslintcache
+.vercel
