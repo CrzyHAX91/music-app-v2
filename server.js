@@ -1,9 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer');
 const path = require('path');
-const fs = require('fs').promises;
-const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 
 // Load environment variables
@@ -14,6 +11,8 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files
 app.use(express.static(path.join(__dirname)));
 
 // Basic route for testing
@@ -21,14 +20,15 @@ app.get('/api/test', (req, res) => {
     res.json({ message: 'Server is running!' });
 });
 
-// Root route
-app.get('/', (req, res) => {
+// Serve index.html for all other routes
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Handle all other routes
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // For local development
