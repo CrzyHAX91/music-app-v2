@@ -1,0 +1,125 @@
+version: '3.8'
+
+services:
+  # Main application
+  app:
+    build: .
+    container_name: harmony-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - ./uploads:/app/uploads
+      - ./.env:/app/.env:ro
+    depends_on:
+      - redis
+      - cloudinary-mock
+    networks:
+      - harmony-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Redis for caching and session management
+  redis:
+    image: redis:alpine
+    container_name: harmony-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - harmony-network
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Mock Cloudinary service for local development
+  cloudinary-mock:
+    image: node:18-alpine
+    container_name: harmony-cloudinary-mock
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./uploads:/app/uploads
+    command: >
+      sh -c "npm install -g http-server && http-server ./uploads -p 8080 --cors"
+    ports:
+      - "8080:8080"
+    networks:
+      - harmony-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: harmony-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./uploads:/var/www/uploads:ro
+    depends_on:
+      - app
+    networks:
+      - harmony-network
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Development tools
+  dev-tools:
+    image: node:18-alpine
+    container_name: harmony-dev-tools
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: npm run dev
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "9229:9229" # For debugging
+    networks:
+      - harmony-network
+    profiles:
+      - dev
+
+volumes:
+  redis-data:
+    name: harmony-redis-data
+
+networks:
+  harmony-network:
+    name: harmony-network
+    driver: bridge
+
+# Development overrides
+x-dev-overrides: &dev-overrides
+  volumes:
+    - .:/app:delegated
+  environment:
+    - NODE_ENV=development
+    - DEBUG=harmony:*
+  command: npm run dev

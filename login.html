@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-header">
+            <i class="fas fa-music"></i>
+            <h1>Harmony</h1>
+            <p>Electronic Music Platform</p>
+        </div>
+
+        <div class="login-options">
+            <div class="oauth-buttons">
+                <button class="oauth-btn google">
+                    <i class="fab fa-google"></i>
+                    Continue with Google
+                </button>
+                <button class="oauth-btn facebook">
+                    <i class="fab fa-facebook"></i>
+                    Continue with Facebook
+                </button>
+                <button class="oauth-btn github">
+                    <i class="fab fa-github"></i>
+                    Continue with GitHub
+                </button>
+            </div>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+
+            <div class="subscription-options">
+                <h3>Choose Your Plan</h3>
+                <div class="plan-cards">
+                    <div class="plan-card">
+                        <h4>Free</h4>
+                        <div class="price">$0</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Basic music streaming</li>
+                            <li><i class="fas fa-check"></i> Limited downloads</li>
+                            <li><i class="fas fa-check"></i> Ad-supported</li>
+                            <li><i class="fas fa-check"></i> Basic audio quality</li>
+                        </ul>
+                        <button class="select-plan-btn">Select Free Plan</button>
+                    </div>
+                    <div class="plan-card premium">
+                        <div class="badge">RECOMMENDED</div>
+                        <h4>Premium</h4>
+                        <div class="price">$8.99<span>/month</span></div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Unlimited music streaming</li>
+                            <li><i class="fas fa-check"></i> Unlimited downloads</li>
+                            <li><i class="fas fa-check"></i> Ad-free experience</li>
+                            <li><i class="fas fa-check"></i> High-quality audio</li>
+                            <li><i class="fas fa-check"></i> Upload your own tracks</li>
+                            <li><i class="fas fa-check"></i> Exclusive content</li>
+                            <li><i class="fas fa-check"></i> Priority support</li>
+                        </ul>
+                        <button class="select-plan-btn premium">Select Premium Plan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-footer">
+            <p>Don't have an account? <a href="#signup">Sign Up</a></p>
+            <p><a href="#forgot-password">Forgot Password?</a></p>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

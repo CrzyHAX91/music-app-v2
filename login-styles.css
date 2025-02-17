@@ -1,0 +1,307 @@
+.login-page {
+    background: linear-gradient(135deg, #1DB954 0%, #121212 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.login-header i {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.login-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.login-header p {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+.login-options {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.oauth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.oauth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #fff;
+    color: #000;
+}
+
+.oauth-btn i {
+    font-size: 20px;
+}
+
+.oauth-btn.google:hover {
+    background-color: #f2f2f2;
+}
+
+.oauth-btn.facebook {
+    background-color: #1877F2;
+    color: white;
+}
+
+.oauth-btn.facebook:hover {
+    background-color: #166fe5;
+}
+
+.oauth-btn.github {
+    background-color: #24292e;
+    color: white;
+}
+
+.oauth-btn.github:hover {
+    background-color: #1b1f23;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+    padding: 0 16px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.form-group input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.login-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #1ed760;
+    transform: translateY(-1px);
+}
+
+.subscription-options {
+    margin-top: 32px;
+}
+
+.subscription-options h3 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.plan-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.plan-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-4px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.plan-card.premium {
+    border: 2px solid var(--primary-color);
+}
+
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.plan-card h4 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+}
+
+.price span {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+.plan-card ul {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.plan-card li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+}
+
+.plan-card li i {
+    color: var(--primary-color);
+}
+
+.select-plan-btn {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    background-color: transparent;
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-plan-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.select-plan-btn.premium {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.select-plan-btn.premium:hover {
+    background-color: #1ed760;
+}
+
+.login-footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.login-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 24px;
+    }
+
+    .plan-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .oauth-buttons {
+        flex-direction: column;
+    }
+}
