@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "Electronic music platform with subscription-based features",
   "main": "server.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
+    "build": "npm install",
+    "vercel-build": "echo hello",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
