@@ -18,14 +18,19 @@
         }
         .container {
             text-align: center;
+            padding: 40px;
+            background: #282828;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         h1 {
             color: #1DB954;
             margin-bottom: 20px;
         }
         .status {
-            padding: 10px 20px;
-            background: #282828;
+            margin-top: 20px;
+            padding: 15px;
+            background: #1DB954;
             border-radius: 5px;
             display: inline-block;
         }
@@ -35,18 +40,8 @@
     <div class="container">
         <h1>Music App V2</h1>
         <div class="status">
-            Status: <span id="status">Checking...</span>
+            Server Status: Online
         </div>
     </div>
-    <script>
-        fetch('/api/test')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('status').textContent = data.message;
-            })
-            .catch(error => {
-                document.getElementById('status').textContent = 'Error connecting to server';
-            });
-    </script>
 </body>
 </html>
