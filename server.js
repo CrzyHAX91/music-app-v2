@@ -1,51 +1,40 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-
-// Load environment variables
-dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// Basic middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// API routes
+// Basic test endpoint
 app.get('/api/test', (req, res) => {
-    try {
-        // Generate a test token
-        const token = jwt.sign(
-            { message: 'Server is running!' },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
-        );
-
-        res.json({ 
-            message: 'Server is running!',
-            token: token
-        });
-    } catch (error) {
-        console.error('JWT Error:', error);
-        res.status(500).json({ 
-            error: 'Internal server error',
-            details: error.message
-        });
-    }
+    res.json({
+        status: 'success',
+        message: 'API is working!'
+    });
 });
 
-// Serve index.html for client-side routing
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'healthy',
+        timestamp: new Date().toISOString()
+    });
+});
+
+// Serve index.html for all other routes
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Error handling middleware
+// Error handling
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({ error: 'Something went wrong!' });
+    res.status(500).json({ 
+        status: 'error',
+        message: 'Something went wrong!'
+    });
 });
 
 // For local development
